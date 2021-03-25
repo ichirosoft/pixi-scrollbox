@@ -35,6 +35,8 @@ interface ScrollBoxOptions {
     overflow?: OverflowScrollType
     noTicker?: boolean
     ticker?: PIXI.Ticker
+    onScrollVertical?: ( top ) => void
+    onScrollHorizontal?: ( left ) => void
 }
 
 /**
@@ -63,6 +65,8 @@ export declare class Scrollbox extends PIXI.Container {
     scrollTop: number
     scrollWidth: number
     stopPropagation: boolean
+    onScrollVertical: ( top ) => void
+    onScrollHorizontal: ( left ) => void
 
     /**
      * create a scrollbox
