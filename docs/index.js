@@ -50303,7 +50303,9 @@
 	    'fadeScrollboxWait': 3000,
 	    'fadeScrollboxEase': 'easeInOutSine',
 	    'passiveWheel': false,
-	    'clampWheel': true
+	    'clampWheel': true,
+	    'onScrollVertical': null,
+	    'onScrollHorizontal': null,
 	};
 
 	/**
@@ -50356,7 +50358,17 @@
 	        this.content = this.addChild(new Viewport({ passiveWheel: this.options.passiveWheel, stopPropagation: this.options.stopPropagation, screenWidth: this.options.boxWidth, screenHeight: this.options.boxHeight, interaction: this.options.interaction }));
 	        this.content
 	            .decelerate()
-	            .on('moved', () => this._drawScrollbars());
+	            .on('moved', () => {
+	                this._drawScrollbars();
+	                if( this.options.onScrollHorizontal )
+	                {
+	                    this.options.onScrollHorizontal( this.content.left );
+	                }
+	                if( this.options.onScrollVertical )
+	                {
+	                    this.options.onScrollVertical( this.content.top );
+	                }
+	            });
 
 	        // needed to pull this out of viewportOptions because of pixi.js v4 support (which changed from PIXI.ticker.shared to PIXI.Ticker.shared...sigh)
 	        if (options.ticker)
@@ -50930,6 +50942,18 @@
 	    scrollbarUp()
 	    {
 	        this.pointerDown = null;
+	    }
+
+	    setContentTop( top ) {
+	        const height = this.scrollHeight + (this.isScrollbarHorizontal ? this.options.scrollbarSize : 0);
+	        this.content.top = top / this.boxHeight * height;
+	        this.update();
+	    }
+
+	    setContentLeft( left ) {
+	        const width = this.scrollWidth + (this.isScrollbarVertical ? this.options.scrollbarSize : 0);
+	        this.content.left = left / this.boxWidth * width;
+	        this.update();
 	    }
 
 	    /**

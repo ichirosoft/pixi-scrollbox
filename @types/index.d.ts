@@ -115,4 +115,17 @@ export declare class Scrollbox extends PIXI.Container {
      * handle pointer down on scrollbar
      */
     private scrollbarUp(): void
+
+    /**
+     * set content top
+     * @param top
+     */
+    setContentTop( top ):void
+
+    /**
+     * set content left
+     * @param left
+     */
+    setContentLeft( left ):void
+
 }

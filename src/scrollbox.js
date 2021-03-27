@@ -661,6 +661,18 @@ export class Scrollbox extends PIXI.Container
         this.pointerDown = null
     }
 
+    setContentTop( top ) {
+        const height = this.scrollHeight + (this.isScrollbarHorizontal ? this.options.scrollbarSize : 0)
+        this.content.top = top / this.boxHeight * height
+        this.update()
+    }
+
+    setContentLeft( left ) {
+        const width = this.scrollWidth + (this.isScrollbarVertical ? this.options.scrollbarSize : 0)
+        this.content.left = left / this.boxWidth * width
+        this.update()
+    }
+
     /**
      * resize the mask for the container
      * @param {object} options
