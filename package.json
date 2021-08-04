@@ -41,6 +41,7 @@
         "pixi.js": ">=4.6.0"
     },
     "dependencies": {
+        "gsap": "^3.7.1",
         "penner": "^0.1.3"
     },
     "devDependencies": {

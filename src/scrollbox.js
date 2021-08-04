@@ -1,6 +1,9 @@
 import * as PIXI from 'pixi.js'
 import { Viewport } from 'pixi-viewport'
 import Penner from 'penner'
+import { gsap, Power4 } from 'gsap/all';
+import PixiPlugin from 'gsap/PixiPlugin';
+PixiPlugin.registerPIXI( PIXI );
 
 const scrollboxOptions = {
     'boxWidth': 100,
@@ -661,15 +664,24 @@ export class Scrollbox extends PIXI.Container
         this.pointerDown = null
     }
 
-    setContentTop( top ) {
+    setContentTop( top, durationSeconds ) {
         const height = this.scrollHeight + (this.isScrollbarHorizontal ? this.options.scrollbarSize : 0)
-        this.content.top = top / this.boxHeight * height
+        gsap.to(this.content, durationSeconds, {
+            top: top / this.boxHeight * height,
+            ease: Power4.easeOut,
+        } )
+        //this.content.top = top / this.boxHeight * height
         this.update()
     }
 
-    setContentLeft( left ) {
+    setContentLeft( left, durationSeconds ) {
         const width = this.scrollWidth + (this.isScrollbarVertical ? this.options.scrollbarSize : 0)
-        this.content.left = left / this.boxWidth * width
+        gsap.to(this.content, durationSeconds, {
+            left: left / this.boxWidth * width,
+            ease: Power4.easeOut,
+        } )
+
+        //this.content.left = left / this.boxWidth * width
         this.update()
     }
 

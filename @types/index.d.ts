@@ -119,13 +119,15 @@ export declare class Scrollbox extends PIXI.Container {
     /**
      * set content top
      * @param top
+     * @param durationSeconds duration of moving
      */
-    setContentTop( top ):void
+    setContentTop( top:number, durationSeconds:number ):void
 
     /**
      * set content left
      * @param left
+     * @param durationSeconds duration of moving
      */
-    setContentLeft( left ):void
+    setContentLeft( left:number, durationSeconds:number ):void
 
 }
