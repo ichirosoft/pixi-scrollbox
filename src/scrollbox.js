@@ -665,12 +665,10 @@ export class Scrollbox extends PIXI.Container
     }
 
     setContentTop( top, durationSeconds ) {
-        const height = this.scrollHeight + (this.isScrollbarHorizontal ? this.options.scrollbarSize : 0)
         gsap.to(this.content, durationSeconds, {
-            top: top / this.boxHeight * height,
+            top: top,
             ease: Power4.easeOut,
         } )
-        //this.content.top = top / this.boxHeight * height
         this.update()
     }
 
